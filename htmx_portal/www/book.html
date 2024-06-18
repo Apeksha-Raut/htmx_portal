@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my book</title>
+
+    <!--htmx link-->
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--bootstrap links
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>-->
+
+    <!--pico cdn link-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body class="container">
+    <!-- <button hx-get="api/method/ping" hx-target="#response">Ping</button>
+
+    <div id="response"></div> -->
+
+    <nav>
+      <ul>
+        <li><strong>Books</strong></li>
+      </ul>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Products</a></li>
+      </ul>
+    </nav>
+    <main class="grid">
+      <div>
+        <form
+          hx-post="/api/method/htmx_portal.htmx_portal.doctype.book.book.add_book"
+          hx-target="#book-list"
+        >
+          <fieldset>
+            <label>
+              Name
+              <input name="name" placeholder="Book name" required />
+            </label>
+            <label>
+              Author
+              <input name="author" placeholder="Author" required />
+            </label>
+          </fieldset>
+
+          <input type="submit" value="Add" />
+        </form>
+      </div>
+      <div>
+        <article id="book-list">
+          {% include "templates/includes/book_list.html" %}
+        </article>
+        <button
+          hx-get="/api/method/htmx_portal.htmx_portal.doctype.book.book.get_book_list"
+          hx-target="#book-list"
+        >
+          Refresh
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

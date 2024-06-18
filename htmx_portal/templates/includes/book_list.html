@@ -1,0 +1,7 @@
+{% set books = frappe.db.get_all('Book', fields=["name","author"]) %}
+
+<ul>
+  {% for book in books %}
+  <li>{{ book.name }} by {{ book.author }}</li>
+  {% endfor %}
+</ul>
